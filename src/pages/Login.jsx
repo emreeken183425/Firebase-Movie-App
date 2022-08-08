@@ -7,6 +7,10 @@ const Login = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
+ const handleLogin=(e)=>{
+  e.preventDefault();
+  console.log(email,password );
+ }
  
   return (
     <div className="d-flex justify-content-center">
@@ -15,7 +19,7 @@ const Login = () => {
       </div>
       <div className="register-form">
         <h1 className="form-title display-3 ">Login</h1>
-        <form id="register" >
+        <form id="register" onSubmit={handleLogin}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email
@@ -49,11 +53,11 @@ const Login = () => {
             type="submit"
             className="btn btn-primary form-control"
             value="Login"
+            
           />
         </form>
         <button
-          className="btn btn-primary form-control"
-          
+          className="btn btn-primary form-control"          
         >
           Continue with Google
         </button>
