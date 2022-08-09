@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth ,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth ,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,updateProfile } from "firebase/auth";
 
 
 //https://firebase.google.com/docs/auth/web/start
@@ -22,10 +22,13 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
- export const createUser= async(email, password,navigate)=>{
+ export const createUser= async(email, password,navigate,displayName)=>{
     // yeni bir kullanıcı oluşturmak için kullanılan firebase methodu
     try {
      let userCredential=await createUserWithEmailAndPassword(auth, email, password) ;
+     await updateProfile(auth.currentUser, {
+        displayName: displayName,
+      })
      navigate('/');
      console.log(userCredential);
     } catch (error) {
@@ -37,9 +40,22 @@ export const signIn= async(email, password,navigate)=>{
     try {
      let userCredential=await signInWithEmailAndPassword(auth, email, password);
      navigate('/');
-     sessionStorage.setItem("user" ,JSON.stringify(userCredential.user ))
+    //  sessionStorage.setItem("user" ,JSON.stringify(userCredential.user ))
      console.log(userCredential);
     } catch (error) {
         console.log(error);
     }
 }
+ export const userObserver=(serCurrentUser)=>{
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          
+            serCurrentUser(user)
+        } else {
+         serCurrentUser(false)
+      }})
+ }
+
+ export const logOut=()=>{
+    signOut(auth)
+ }
