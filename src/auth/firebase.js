@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth ,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,updateProfile } from "firebase/auth";
+import { getAuth ,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,updateProfile,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
 
 //https://firebase.google.com/docs/auth/web/start
@@ -58,4 +58,15 @@ export const signIn= async(email, password,navigate)=>{
 
  export const logOut=()=>{
     signOut(auth)
+ }
+
+ export const signUpProvider=(navigate)=>{
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+  .then((result) => {
+   console.log(result);
+   navigate('/');
+  }).catch((error) => {
+    console.log(error);
+  });
  }
