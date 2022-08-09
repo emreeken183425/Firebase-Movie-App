@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
+import { forgotPassword, signIn, signUpProvider } from '../auth/firebase.js';
 import { useNavigate } from 'react-router-dom';
-import { signIn, signUpProvider } from '../auth/firebase';
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
- const handleLogin=(e)=>{
-  e.preventDefault();
-  signIn(email,password,navigate);
-  // console.log(email,password );
- }
- const handleProviderLogin=()=>{
-  signUpProvider(navigate)
- }
- 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signIn(email, password, navigate);
+    // console.log(email, password);
+  };
+  const handleProviderLogin = () => {
+    signUpProvider(navigate);
+  };
+
   return (
     <div className="d-flex justify-content-center">
       <div className="form-image d-none d-md-block ">
@@ -50,18 +50,18 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="link" >
+          <div className="link" onClick={() => forgotPassword(email)}>
             Forgot Password?
           </div>
           <input
             type="submit"
             className="btn btn-primary form-control"
             value="Login"
-            
           />
         </form>
         <button
-          className="btn btn-primary form-control" onClick={handleProviderLogin}         
+          className="btn btn-primary form-control"
+          onClick={handleProviderLogin}
         >
           Continue with Google
         </button>

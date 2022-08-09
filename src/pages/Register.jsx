@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createUser } from '../auth/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate=useNavigate()
-const handleSubmit=(e)=>{
-  e.preventDefault();
-  const displayName=`${firstName} ${lastName}  `
-console.log(firstName,lastName );
-createUser(email,password,navigate,displayName)
+  const navigate = useNavigate();
 
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const displayName = `${firstName} ${lastName}`;
+    console.log(firstName, lastName);
+    createUser(email, password, navigate, displayName);
+  };
 
   return (
     <div className="d-flex justify-content-center">
@@ -22,8 +22,8 @@ createUser(email,password,navigate,displayName)
         <img src={'https://picsum.photos/800/800'} alt="sample-movie" />
       </div>
       <div className="register-form">
-        <h1 className="form-title display-1 ">Register</h1>
-        <form id="register" onSubmit={handleSubmit} >
+        <h1 className="form-title display-3 ">Register</h1>
+        <form id="register" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="firstName" className="form-label">
               First Name

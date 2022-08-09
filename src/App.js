@@ -1,15 +1,17 @@
-import React from 'react'
-import AppRouter from './router/AppRouter'
-import AudioContextProvider from './context/AuthContext.jsx'
-const App=()=> {
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import AuthContextProvider from './context/AuthContext';
+import AppRouter from './router/AppRouter';
+
+const App = () => {
   return (
     <div>
-      <AudioContextProvider>
-      <AppRouter/>
-      </AudioContextProvider>
-       
+      <AuthContextProvider>
+        <AppRouter />
+        <ToastContainer />
+      </AuthContextProvider>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
