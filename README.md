@@ -1,6 +1,7 @@
 
 
 # Project : Movie App 
+[]()https://firebase-movie-app-cyan.vercel.app/
 
 ## Description
 
@@ -45,7 +46,7 @@ SOLUTION
 
 ![Project 005 Snapshot](movie-app_structure.png)
 
-## Expected Outcome
+## Fİnnally
 
 ![Project 005 Snapshot](movie-app.gif)
 
