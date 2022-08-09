@@ -37,6 +37,7 @@ export const signIn= async(email, password,navigate)=>{
     try {
      let userCredential=await signInWithEmailAndPassword(auth, email, password);
      navigate('/');
+     sessionStorage.setItem("user" ,JSON.stringify(userCredential.user ))
      console.log(userCredential);
     } catch (error) {
         console.log(error);
