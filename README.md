@@ -45,7 +45,7 @@ SOLUTION
 
 ![Project 005 Snapshot](movie-app_structure.png)
 
-## Expected Outcome
+## Fİnnally
 
 ![Project 005 Snapshot](movie-app.gif)
 
